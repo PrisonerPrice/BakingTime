@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.prisonerprice.bakingtime.DetailScreen.DetailActivity;
+import com.prisonerprice.bakingtime.DetailScreen.DetailViewModel;
 import com.prisonerprice.bakingtime.Model.Recipe;
 import com.prisonerprice.bakingtime.Model.RecipeUtils;
 import com.prisonerprice.bakingtime.R;
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements MainScreenAdapter
 
     private final static String TAG = MainActivity.class.getSimpleName();
     private RecyclerView mainScreenRecyclerView;
+    private List<Recipe> data;
     private MainScreenAdapter mAdapter;
 
     @Override
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainScreenAdapter
 
         // Set adapter
         try {
-            List<Recipe> data = RecipeUtils.parseJSONToRecipes(RecipeUtils.loadJSONFromAsset(this));
+            data = RecipeUtils.parseJSONToRecipes(RecipeUtils.loadJSONFromAsset(this));
             mAdapter = new MainScreenAdapter(this, data);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements MainScreenAdapter
 
     @Override
     public void onItemClick(int position) {
-
+        Intent intent = new Intent(this, DetailActivity.class);
+        DetailViewModel.getInstance(getApplication()).setRecipe(data.get(position));
+        startActivity(intent);
     }
 }

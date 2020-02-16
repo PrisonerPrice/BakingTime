@@ -6,4 +6,5 @@
     <dimen name="MarginXL">16dp</dimen>
     <dimen name="MarginXXL">20dp</dimen>
     <dimen name="maxHeight">200dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
