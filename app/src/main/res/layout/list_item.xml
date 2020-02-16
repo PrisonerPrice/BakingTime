@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/maxHeight"
+    android:maxHeight="@dimen/maxHeight"
+    android:layout_marginHorizontal="@dimen/MarginL"
+    android:layout_marginVertical="@dimen/MarginM">
 
-    <com.google.android.material.card.MaterialCardView
+    <ImageView
+        android:id="@+id/card_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/minHeight"
-        android:layout_marginHorizontal="@dimen/MarginL"
-        android:layout_marginVertical="@dimen/MarginL"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/card_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+</com.google.android.material.card.MaterialCardView>

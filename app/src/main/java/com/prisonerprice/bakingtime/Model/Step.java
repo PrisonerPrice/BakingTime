@@ -15,4 +15,24 @@ public class Step {
         this.videoUrl = videoUrl;
         this.thumbnailUrl = thumbnailUrl;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
 }

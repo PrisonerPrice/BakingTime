@@ -19,4 +19,28 @@ public class Recipe {
         this.servings = servings;
         this.imageUrl = imageUrl;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }
