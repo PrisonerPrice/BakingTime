@@ -101,7 +101,7 @@
       }
     ],
     "servings": 8,
-    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/nutella_pie.jpg"
+    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/nutella_pie.jpeg"
   },
   {
     "id": 2,
@@ -231,7 +231,7 @@
       }
     ],
     "servings": 8,
-    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/brownies.jpg"
+    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/brownies.jpeg"
   },
   {
     "id": 3,
@@ -382,7 +382,7 @@
       }
     ],
     "servings": 8,
-    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/yellow_cake.jpg"
+    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/yellow_cake.jpeg"
   },
   {
     "id": 4,
@@ -528,6 +528,6 @@
       }
     ],
     "servings": 8,
-    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/cheesecake.jpg"
+    "image": "https://raw.githubusercontent.com/PrisonerPrice/BakingTime/master/images/cheesecake.jpeg"
   }
 ]}
