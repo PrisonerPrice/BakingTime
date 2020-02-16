@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="MarginS">4dp</dimen>
+    <dimen name="MarginM">8dp</dimen>
+    <dimen name="MarginL">12dp</dimen>
+    <dimen name="MarginXL">16dp</dimen>
+    <dimen name="MarginXXL">20dp</dimen>
+    <dimen name="minHeight">200dp</dimen>
+</resources>
