@@ -22,6 +22,8 @@ public class DetailActivity extends AppCompatActivity {
     private static final String TAG = DetailActivity.class.getSimpleName();
 
     private FragmentManager fragmentManager;
+    private DetailViewModel model = DetailViewModel.getInstance();
+
     private StepsListFragment stepsListFragment;
     private MediaPlayerFragment mediaPlayerFragment;
     private InstructionFragment instructionFragment;
@@ -30,13 +32,11 @@ public class DetailActivity extends AppCompatActivity {
     private FrameLayout listFrameLayout;
     private LinearLayout detailLinearLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        DetailViewModel model = DetailViewModel.getInstance();
         fragmentManager = getSupportFragmentManager();
 
         // phone ui
@@ -65,6 +65,18 @@ public class DetailActivity extends AppCompatActivity {
                     .add(R.id.instruction_fl, instructionFragment)
                     .add(R.id.play_next_fl, playNextFragment)
                     .commit();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        boolean b = model.getShowDetail().getValue();
+        if (b) {
+            listFrameLayout.setVisibility(View.VISIBLE);
+            detailLinearLayout.setVisibility(View.GONE);
+            model.isDetailShown(false);
+        } else {
+            super.onBackPressed();
         }
     }
 }
