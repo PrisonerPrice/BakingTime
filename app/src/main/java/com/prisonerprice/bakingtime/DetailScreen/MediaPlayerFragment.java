@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
@@ -29,6 +31,7 @@ public class MediaPlayerFragment extends Fragment {
     private static final String TAG = MediaPlayerFragment.class.getSimpleName();
 
     private PlayerView playerView;
+    private LinearLayout noVideoIndicator;
     private SimpleExoPlayer player;
     private boolean playWhenReady = true;
     private int currentWindow = 0;
@@ -49,15 +52,17 @@ public class MediaPlayerFragment extends Fragment {
 
         Log.d(TAG, "onCreateView is called");
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
-        prepareResAndView();
         playerView = rootView.findViewById(R.id.exo_player);
+        noVideoIndicator = rootView.findViewById(R.id.player_no_video_indicator);
+        prepareResAndView();
+
         return rootView;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (Util.SDK_INT > 23) {
+        if (Util.SDK_INT > 23 && hasVideo) {
             initializePlayer();
         }
     }
@@ -67,7 +72,7 @@ public class MediaPlayerFragment extends Fragment {
         super.onResume();
         //hideSystemUi();
         if ((Util.SDK_INT <= 23 || player == null)) {
-            initializePlayer();
+            if (hasVideo) initializePlayer();
         }
     }
 
@@ -146,6 +151,15 @@ public class MediaPlayerFragment extends Fragment {
                 res = null;
                 hasVideo = false;
             }
+        } else {
+            hasVideo = false;
+        }
+        if (hasVideo) {
+            playerView.setVisibility(View.VISIBLE);
+            noVideoIndicator.setVisibility(View.INVISIBLE);
+        } else {
+            playerView.setVisibility(View.GONE);
+            noVideoIndicator.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -10,4 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <LinearLayout
+        android:id="@+id/player_no_video_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ic_explore_off_24px"
+            android:layout_marginVertical="@dimen/MarginS"/>
+
+        <TextView
+            android:id="@+id/player_no_video_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/player_no_video"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/MarginS"/>
+
+    </LinearLayout>
+
+
 </FrameLayout>
