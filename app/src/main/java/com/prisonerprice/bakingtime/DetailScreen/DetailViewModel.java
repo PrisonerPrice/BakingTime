@@ -1,25 +1,17 @@
 package com.prisonerprice.bakingtime.DetailScreen;
 
-import android.app.Application;
-import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModel;
 
 import com.prisonerprice.bakingtime.Model.Recipe;
 
-public class DetailViewModel extends AndroidViewModel {
+public class DetailViewModel extends ViewModel {
 
     public static DetailViewModel detailViewModel;
-    public static Recipe recipe;
+    private Recipe recipe;
 
-    public DetailViewModel(@NonNull Application application) {
-        super(application);
-    }
-
-    public static DetailViewModel getInstance(Application application) {
+    public static DetailViewModel getInstance() {
         if (detailViewModel == null) {
-            detailViewModel = new DetailViewModel(application);
+            detailViewModel = new DetailViewModel();
         }
         return detailViewModel;
     }

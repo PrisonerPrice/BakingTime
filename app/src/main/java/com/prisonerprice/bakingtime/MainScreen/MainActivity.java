@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainScreenAdapter
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(this, DetailActivity.class);
-        DetailViewModel.getInstance(getApplication()).setRecipe(data.get(position));
+        DetailViewModel.getInstance().setRecipe(data.get(position));
         startActivity(intent);
     }
 }

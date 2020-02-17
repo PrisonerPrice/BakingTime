@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.prisonerprice.bakingtime.Model.Ingredient;
+import com.prisonerprice.bakingtime.Model.RecipeUtils;
 import com.prisonerprice.bakingtime.Model.Step;
 import com.prisonerprice.bakingtime.R;
 
@@ -19,7 +22,8 @@ import java.util.List;
 
 public class StepsListFragment extends Fragment implements DetailScreenAdapter.StepClickListener {
 
-    //private StepFragmentClickListener mListener;
+    private static final String TAG = StepsListFragment.class.getSimpleName();
+
     private RecyclerView stepRecyclerView;
     private List<Step> data;
 
@@ -38,7 +42,9 @@ public class StepsListFragment extends Fragment implements DetailScreenAdapter.S
         stepRecyclerView.setLayoutManager(gridLayoutManager);
         stepRecyclerView.setHasFixedSize(true);
 
-        data = DetailViewModel.recipe.getSteps();
+        DetailViewModel detailViewModel = DetailViewModel.getInstance();
+        data = detailViewModel.getRecipe().getSteps();
+        data.add(0, RecipeUtils.parseIngredientsToStep(detailViewModel.getRecipe().getIngredients()));
         DetailScreenAdapter detailScreenAdapter = new DetailScreenAdapter(this, data);
         stepRecyclerView.setAdapter(detailScreenAdapter);
 
@@ -47,14 +53,7 @@ public class StepsListFragment extends Fragment implements DetailScreenAdapter.S
 
     @Override
     public void onItemClick(int position) {
-
+        Log.d(TAG, "position " + position + " is clicked");
     }
 
-    /*
-    public interface StepFragmentClickListener {
-        // TODO: Update argument type and name
-        void onStepFragmentClick(int position);
-    }
-
-     */
 }

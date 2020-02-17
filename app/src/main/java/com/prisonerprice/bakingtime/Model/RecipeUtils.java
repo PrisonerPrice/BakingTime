@@ -69,4 +69,19 @@ public class RecipeUtils {
         }
         return result;
     }
+
+    public static Step parseIngredientsToStep(List<Ingredient> ingredients) {
+        String ingredientString = "";
+        for(Ingredient i : ingredients) {
+            ingredientString += i.getIngredientName() + "   " + i.getQuantity() + " " + i.getMeasure() + "\n";
+        }
+        Step step = new Step(
+                -1,
+                "Ingredients",
+                ingredientString,
+                "null",
+                "null"
+        );
+        return step;
+    }
 }
