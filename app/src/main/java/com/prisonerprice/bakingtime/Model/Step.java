@@ -36,6 +36,14 @@ public class Step {
         return thumbnailUrl;
     }
 
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Step{" +

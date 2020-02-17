@@ -47,6 +47,9 @@ public class DetailActivity extends AppCompatActivity {
             if (b) {
                 listFrameLayout.setVisibility(View.GONE);
                 detailLinearLayout.setVisibility(View.VISIBLE);
+                fragmentManager.beginTransaction()
+                        .replace(R.id.media_player_fl, new MediaPlayerFragment())
+                        .commit();
             } else {
                 listFrameLayout.setVisibility(View.VISIBLE);
                 detailLinearLayout.setVisibility(View.GONE);

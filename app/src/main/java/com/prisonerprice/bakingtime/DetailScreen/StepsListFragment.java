@@ -44,7 +44,9 @@ public class StepsListFragment extends Fragment implements DetailScreenAdapter.S
         stepRecyclerView.setHasFixedSize(true);
 
         data = detailViewModel.getRecipe().getSteps();
-        data.add(0, RecipeUtils.parseIngredientsToStep(detailViewModel.getRecipe().getIngredients()));
+        data.get(0).setShortDescription("Ingredients");
+        data.get(0).setDescription(RecipeUtils.parseIngredientsToStep(
+                detailViewModel.getRecipe().getIngredients()).getDescription());
         DetailScreenAdapter detailScreenAdapter = new DetailScreenAdapter(this, data);
         stepRecyclerView.setAdapter(detailScreenAdapter);
 
