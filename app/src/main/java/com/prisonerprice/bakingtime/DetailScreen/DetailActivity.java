@@ -1,9 +1,11 @@
 package com.prisonerprice.bakingtime.DetailScreen;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.prisonerprice.bakingtime.Model.Ingredient;
 import com.prisonerprice.bakingtime.Model.Step;
 import com.prisonerprice.bakingtime.R;
@@ -32,16 +36,30 @@ public class DetailActivity extends AppCompatActivity {
     private FrameLayout listFrameLayout;
     private LinearLayout detailLinearLayout;
 
+    public static Snackbar atTheBeginningSnack;
+    public static Snackbar atTheEndSnack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        // set default step
+        model.selectStep(model.getRecipe().getSteps().get(0));
 
         fragmentManager = getSupportFragmentManager();
 
         // phone ui
         listFrameLayout = (FrameLayout) findViewById(R.id.step_list_fl);
         detailLinearLayout = (LinearLayout) findViewById(R.id.detail_fragments_ll);
+
+        atTheBeginningSnack =
+                Snackbar.make(detailLinearLayout, "You are at the beginning", 800);
+        atTheEndSnack =
+                Snackbar.make(detailLinearLayout, "You are at the end", 800);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) setSnackColor();
+
+
         model.isDetailShown(false);
         model.getShowDetail().observe(this, b -> {
             if (b) {
@@ -81,5 +99,11 @@ public class DetailActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void setSnackColor() {
+        atTheBeginningSnack.setBackgroundTint(this.getColor(R.color.colorPrimaryLight));
+        atTheEndSnack.setBackgroundTint(this.getColor(R.color.colorPrimaryLight));
     }
 }

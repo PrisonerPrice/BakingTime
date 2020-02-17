@@ -12,7 +12,7 @@ public class DetailViewModel extends ViewModel {
     public static DetailViewModel detailViewModel;
     private Recipe recipe;
     private MutableLiveData<Boolean> showDetail = new MutableLiveData<>();
-    private MutableLiveData<Step> selectedStep = new MutableLiveData<>();
+    private static MutableLiveData<Step> selectedStep = new MutableLiveData<>();
 
     public static DetailViewModel getInstance() {
         if (detailViewModel == null) {

@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".DetailScreen.InstructionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/instruction_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/MarginL"
-        android:gravity="center"/>
+        android:layout_marginTop="@dimen/MarginXXL"
+        android:layout_marginHorizontal="@dimen/MarginXL"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"/>
 
 </FrameLayout>
