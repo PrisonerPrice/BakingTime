@@ -26,6 +26,7 @@ public class StepsListFragment extends Fragment implements DetailScreenAdapter.S
 
     private RecyclerView stepRecyclerView;
     private List<Step> data;
+    private DetailViewModel detailViewModel = DetailViewModel.getInstance();
 
     public StepsListFragment() {
         // Required empty public constructor
@@ -42,7 +43,6 @@ public class StepsListFragment extends Fragment implements DetailScreenAdapter.S
         stepRecyclerView.setLayoutManager(gridLayoutManager);
         stepRecyclerView.setHasFixedSize(true);
 
-        DetailViewModel detailViewModel = DetailViewModel.getInstance();
         data = detailViewModel.getRecipe().getSteps();
         data.add(0, RecipeUtils.parseIngredientsToStep(detailViewModel.getRecipe().getIngredients()));
         DetailScreenAdapter detailScreenAdapter = new DetailScreenAdapter(this, data);
@@ -54,6 +54,8 @@ public class StepsListFragment extends Fragment implements DetailScreenAdapter.S
     @Override
     public void onItemClick(int position) {
         Log.d(TAG, "position " + position + " is clicked");
+        detailViewModel.selectStep(data.get(position));
+        detailViewModel.isDetailShown(true);
     }
 
 }
