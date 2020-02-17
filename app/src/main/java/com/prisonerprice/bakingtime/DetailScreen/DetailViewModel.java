@@ -11,7 +11,7 @@ import com.prisonerprice.bakingtime.Model.Recipe;
 public class DetailViewModel extends AndroidViewModel {
 
     public static DetailViewModel detailViewModel;
-    private Recipe recipe;
+    public static Recipe recipe;
 
     public DetailViewModel(@NonNull Application application) {
         super(application);

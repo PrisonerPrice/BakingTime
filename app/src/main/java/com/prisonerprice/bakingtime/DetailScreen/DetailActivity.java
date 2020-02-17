@@ -1,6 +1,7 @@
 package com.prisonerprice.bakingtime.DetailScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -14,7 +15,9 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        TextView tv = findViewById(R.id.detail_tv);
-        tv.setText(DetailViewModel.getInstance(getApplication()).getRecipe().getRecipeName());
+        // phone ui
+        StepsListFragment stepsListFragment = new StepsListFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.step_list_fl, stepsListFragment).commit();
     }
 }

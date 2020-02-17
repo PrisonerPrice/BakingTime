@@ -5,6 +5,11 @@
     <dimen name="MarginL">12dp</dimen>
     <dimen name="MarginXL">16dp</dimen>
     <dimen name="MarginXXL">20dp</dimen>
+
     <dimen name="maxHeight">200dp</dimen>
+
+    <dimen name="minHeightS">100dp</dimen>
+    <dimen name="minHeightM">200dp</dimen>
+
     <dimen name="text_margin">16dp</dimen>
 </resources>

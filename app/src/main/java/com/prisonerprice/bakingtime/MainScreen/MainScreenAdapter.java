@@ -57,7 +57,6 @@ public class MainScreenAdapter extends RecyclerView.Adapter<MainScreenAdapter.Ma
             } catch (IllegalArgumentException e) {
                 Log.w(TAG, "The picture url is empty");
             }
-
         }
     }
 
@@ -85,7 +84,7 @@ public class MainScreenAdapter extends RecyclerView.Adapter<MainScreenAdapter.Ma
         }
     }
 
-    public interface MyClickListener{
+    public interface MyClickListener {
         void onItemClick(int position);
     }
 }
