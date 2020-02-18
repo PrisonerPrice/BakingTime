@@ -50,11 +50,36 @@ public class MediaPlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d(TAG, "onCreateView is called");
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
+
+        model.getSelectedStep().observe(getViewLifecycleOwner(), step -> {
+            if (step != null) {
+                if (step.getVideoUrl() != null && step.getVideoUrl().length() > 0) {
+                    res = step.getVideoUrl();
+                    hasVideo = true;
+                    changeMediaSource(buildMediaSource(Uri.parse(res)));
+                } else if (step.getThumbnailUrl() != null && step.getThumbnailUrl().length() > 0) {
+                    res = step.getThumbnailUrl();
+                    hasVideo = true;
+                    changeMediaSource(buildMediaSource(Uri.parse(res)));
+                } else {
+                    res = null;
+                    hasVideo = false;
+                }
+            } else {
+                hasVideo = false;
+            }
+            if (hasVideo) {
+                playerView.setVisibility(View.VISIBLE);
+                noVideoIndicator.setVisibility(View.INVISIBLE);
+            } else {
+                playerView.setVisibility(View.GONE);
+                noVideoIndicator.setVisibility(View.VISIBLE);
+            }
+        });
         playerView = rootView.findViewById(R.id.exo_player);
         noVideoIndicator = rootView.findViewById(R.id.player_no_video_indicator);
-        prepareResAndView();
+        //prepareResAndView();
 
         return rootView;
     }
@@ -98,8 +123,15 @@ public class MediaPlayerFragment extends Fragment {
         playerView.setPlayer(player);
         if (res != null && res.length() > 0) {
             Uri uri = Uri.parse(res);
-            Log.d(TAG, "The Uri is " + uri.toString());
             MediaSource mediaSource = buildMediaSource(uri);
+            player.setPlayWhenReady(playWhenReady);
+            player.seekTo(currentWindow, playbackPosition);
+            player.prepare(mediaSource, false, false);
+        }
+    }
+
+    private void changeMediaSource(MediaSource mediaSource) {
+        if (player != null && mediaSource != null) {
             player.setPlayWhenReady(playWhenReady);
             player.seekTo(currentWindow, playbackPosition);
             player.prepare(mediaSource, false, false);
@@ -136,30 +168,5 @@ public class MediaPlayerFragment extends Fragment {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-    }
-
-    private void prepareResAndView() {
-        Step step = model.getSelectedStep().getValue();
-        if (step != null) {
-            if (step.getVideoUrl() != null && step.getVideoUrl().length() > 0) {
-                res = step.getVideoUrl();
-                hasVideo = true;
-            } else if (step.getThumbnailUrl() != null && step.getThumbnailUrl().length() > 0) {
-                res = step.getThumbnailUrl();
-                hasVideo = true;
-            } else {
-                res = null;
-                hasVideo = false;
-            }
-        } else {
-            hasVideo = false;
-        }
-        if (hasVideo) {
-            playerView.setVisibility(View.VISIBLE);
-            noVideoIndicator.setVisibility(View.INVISIBLE);
-        } else {
-            playerView.setVisibility(View.GONE);
-            noVideoIndicator.setVisibility(View.VISIBLE);
-        }
     }
 }

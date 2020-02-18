@@ -54,9 +54,9 @@ public class DetailActivity extends AppCompatActivity {
         detailLinearLayout = (LinearLayout) findViewById(R.id.detail_fragments_ll);
 
         atTheBeginningSnack =
-                Snackbar.make(detailLinearLayout, "You are at the beginning", 800);
+                Snackbar.make(detailLinearLayout, "You are at the beginning!", 800);
         atTheEndSnack =
-                Snackbar.make(detailLinearLayout, "You are at the end", 800);
+                Snackbar.make(detailLinearLayout, "You have done!", 800);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) setSnackColor();
 
 
