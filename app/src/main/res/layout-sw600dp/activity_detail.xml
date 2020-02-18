@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_parent_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".DetailScreen.DetailActivity">
+
+    <FrameLayout
+        android:id="@+id/step_list_fl"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/detail_fragments_ll"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/media_player_fl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:layout_marginHorizontal="@dimen/MarginS"/>
+
+        <FrameLayout
+            android:id="@+id/instruction_fl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:layout_marginHorizontal="@dimen/MarginS"/>
+
+        <FrameLayout
+            android:id="@+id/play_next_fl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/MarginS"/>
+
+        <FrameLayout
+            android:id="@+id/sw_blank_fl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0"/>
+
+    </LinearLayout>
+
+</LinearLayout>

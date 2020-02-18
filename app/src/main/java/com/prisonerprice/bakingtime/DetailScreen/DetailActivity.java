@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -37,7 +38,6 @@ public class DetailActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-        // phone ui
         listFrameLayout = (FrameLayout) findViewById(R.id.step_list_fl);
         detailLinearLayout = (LinearLayout) findViewById(R.id.detail_fragments_ll);
 
@@ -63,18 +63,35 @@ public class DetailActivity extends AppCompatActivity {
             model.isDetailShown(false);
         }
 
-        model.getShowDetail().observe(this, b -> {
-            if (b) {
-                listFrameLayout.setVisibility(View.GONE);
-                detailLinearLayout.setVisibility(View.VISIBLE);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.media_player_fl, new MediaPlayerFragment())
-                        .commit();
-            } else {
-                listFrameLayout.setVisibility(View.VISIBLE);
-                detailLinearLayout.setVisibility(View.GONE);
-            }
-        });
+        // tablet ui
+        if (findViewById(R.id.sw_blank_fl) != null) {
+            model.getShowDetail().observe(this, b -> {
+                if (b) {
+                    detailLinearLayout.setVisibility(View.VISIBLE);
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.media_player_fl, new MediaPlayerFragment())
+                            .commit();
+                } else {
+                    detailLinearLayout.setVisibility(View.INVISIBLE);
+                }
+            });
+        }
+
+        // phone ui
+        else {
+            model.getShowDetail().observe(this, b -> {
+                if (b) {
+                    listFrameLayout.setVisibility(View.GONE);
+                    detailLinearLayout.setVisibility(View.VISIBLE);
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.media_player_fl, new MediaPlayerFragment())
+                            .commit();
+                } else {
+                    listFrameLayout.setVisibility(View.VISIBLE);
+                    detailLinearLayout.setVisibility(View.GONE);
+                }
+            });
+        }
     }
 
     @Override

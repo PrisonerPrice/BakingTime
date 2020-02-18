@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="@dimen/minHeightS"
+    android:minHeight="@dimen/minHeightXS"
     android:layout_marginHorizontal="@dimen/MarginL"
     android:layout_marginVertical="@dimen/MarginM">
 

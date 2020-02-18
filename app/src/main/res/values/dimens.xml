@@ -8,6 +8,7 @@
 
     <dimen name="maxHeight">200dp</dimen>
 
+    <dimen name="minHeightXS">75dp</dimen>
     <dimen name="minHeightS">100dp</dimen>
     <dimen name="minHeightM">200dp</dimen>
 
