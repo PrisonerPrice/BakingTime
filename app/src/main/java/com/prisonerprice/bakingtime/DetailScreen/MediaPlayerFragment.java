@@ -56,16 +56,17 @@ public class MediaPlayerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
 
         model.getSelectedStep().observe(getViewLifecycleOwner(), step -> {
+            Log.d(TAG, "Curr Step is: " + step.getId());
             if (step != null) {
                 playbackPosition = model.readCache(step);
                 if (step.getVideoUrl() != null && step.getVideoUrl().length() > 0) {
                     res = step.getVideoUrl();
                     hasVideo = true;
-                    changeMediaSource(buildMediaSource(Uri.parse(res)));
+                    setMediaSource(buildMediaSource(Uri.parse(res)));
                 } else if (step.getThumbnailUrl() != null && step.getThumbnailUrl().length() > 0) {
                     res = step.getThumbnailUrl();
                     hasVideo = true;
-                    changeMediaSource(buildMediaSource(Uri.parse(res)));
+                    setMediaSource(buildMediaSource(Uri.parse(res)));
                 } else {
                     res = null;
                     hasVideo = false;
@@ -121,21 +122,14 @@ public class MediaPlayerFragment extends Fragment {
     }
 
     private void initializePlayer() {
-        Log.d(TAG, "initializePlayer");
         player = new SimpleExoPlayer.Builder(getContext()).build();
         playerView.setPlayer(player);
-        if (res != null && res.length() > 0) {
-            Uri uri = Uri.parse(res);
-            MediaSource mediaSource = buildMediaSource(uri);
-            player.setPlayWhenReady(playWhenReady);
-            player.seekTo(currentWindow, playbackPosition);
-            player.prepare(mediaSource, false, false);
-        }
     }
 
-    private void changeMediaSource(MediaSource mediaSource) {
-        Log.d(TAG, "changerMediaSource");
-        if (player != null && mediaSource != null) {
+    private void setMediaSource(MediaSource mediaSource) {
+        Log.d(TAG, "setMediaSource");
+        if (mediaSource != null) {
+            if (player == null) initializePlayer();
             player.setPlayWhenReady(playWhenReady);
             player.seekTo(currentWindow, playbackPosition);
             player.prepare(mediaSource, false, false);
