@@ -29,6 +29,7 @@ import com.prisonerprice.bakingtime.R;
 public class MediaPlayerFragment extends Fragment {
 
     private static final String TAG = MediaPlayerFragment.class.getSimpleName();
+    private static final String POSITION_KEY = "position_key";
 
     private PlayerView playerView;
     private LinearLayout noVideoIndicator;
@@ -50,10 +51,13 @@ public class MediaPlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Log.d(TAG, "onCreateView");
+
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
 
         model.getSelectedStep().observe(getViewLifecycleOwner(), step -> {
             if (step != null) {
+                playbackPosition = model.readCache(step);
                 if (step.getVideoUrl() != null && step.getVideoUrl().length() > 0) {
                     res = step.getVideoUrl();
                     hasVideo = true;
@@ -79,7 +83,6 @@ public class MediaPlayerFragment extends Fragment {
         });
         playerView = rootView.findViewById(R.id.exo_player);
         noVideoIndicator = rootView.findViewById(R.id.player_no_video_indicator);
-        //prepareResAndView();
 
         return rootView;
     }
@@ -118,7 +121,7 @@ public class MediaPlayerFragment extends Fragment {
     }
 
     private void initializePlayer() {
-        Log.d(TAG, "<<<<< Now initializing the player");
+        Log.d(TAG, "initializePlayer");
         player = new SimpleExoPlayer.Builder(getContext()).build();
         playerView.setPlayer(player);
         if (res != null && res.length() > 0) {
@@ -131,6 +134,7 @@ public class MediaPlayerFragment extends Fragment {
     }
 
     private void changeMediaSource(MediaSource mediaSource) {
+        Log.d(TAG, "changerMediaSource");
         if (player != null && mediaSource != null) {
             player.setPlayWhenReady(playWhenReady);
             player.seekTo(currentWindow, playbackPosition);
@@ -140,7 +144,9 @@ public class MediaPlayerFragment extends Fragment {
 
     private void releasePlayer() {
         if (player != null) {
-            playbackPosition = player.getCurrentPosition();
+            Log.d(TAG, "The player is released");
+            //playbackPosition = player.getCurrentPosition();
+            model.writeCache(model.getSelectedStep().getValue(), player.getCurrentPosition());
             currentWindow = player.getCurrentWindowIndex();
             playWhenReady = player.getPlayWhenReady();
             player.release();

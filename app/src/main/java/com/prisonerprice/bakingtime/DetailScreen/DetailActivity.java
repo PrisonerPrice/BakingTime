@@ -3,23 +3,14 @@ package com.prisonerprice.bakingtime.DetailScreen;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.LiveData;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import com.prisonerprice.bakingtime.Model.Ingredient;
-import com.prisonerprice.bakingtime.Model.Step;
 import com.prisonerprice.bakingtime.R;
-
-import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -44,9 +35,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        // set default step
-        model.selectStep(model.getRecipe().getSteps().get(0));
-
         fragmentManager = getSupportFragmentManager();
 
         // phone ui
@@ -58,21 +46,6 @@ public class DetailActivity extends AppCompatActivity {
         atTheEndSnack =
                 Snackbar.make(detailLinearLayout, "You have done!", 800);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) setSnackColor();
-
-
-        model.isDetailShown(false);
-        model.getShowDetail().observe(this, b -> {
-            if (b) {
-                listFrameLayout.setVisibility(View.GONE);
-                detailLinearLayout.setVisibility(View.VISIBLE);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.media_player_fl, new MediaPlayerFragment())
-                        .commit();
-            } else {
-                listFrameLayout.setVisibility(View.VISIBLE);
-                detailLinearLayout.setVisibility(View.GONE);
-            }
-        });
 
         if (savedInstanceState == null) {
             stepsListFragment = new StepsListFragment();
@@ -86,7 +59,22 @@ public class DetailActivity extends AppCompatActivity {
                     .add(R.id.instruction_fl, instructionFragment)
                     .add(R.id.play_next_fl, playNextFragment)
                     .commit();
+
+            model.isDetailShown(false);
         }
+
+        model.getShowDetail().observe(this, b -> {
+            if (b) {
+                listFrameLayout.setVisibility(View.GONE);
+                detailLinearLayout.setVisibility(View.VISIBLE);
+                fragmentManager.beginTransaction()
+                        .replace(R.id.media_player_fl, new MediaPlayerFragment())
+                        .commit();
+            } else {
+                listFrameLayout.setVisibility(View.VISIBLE);
+                detailLinearLayout.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override

@@ -14,6 +14,9 @@ public class DetailViewModel extends ViewModel {
     private MutableLiveData<Boolean> showDetail = new MutableLiveData<>();
     private static MutableLiveData<Step> selectedStep = new MutableLiveData<>();
 
+    private Step cachedStep;
+    private long cachedPosition;
+
     public static DetailViewModel getInstance() {
         if (detailViewModel == null) {
             detailViewModel = new DetailViewModel();
@@ -43,5 +46,17 @@ public class DetailViewModel extends ViewModel {
 
     public void isDetailShown(boolean b) {
         showDetail.setValue(b);
+    }
+
+    public void writeCache(Step step, long position) {
+        cachedStep = step;
+        cachedPosition = position;
+    }
+
+    public long readCache(Step step) {
+        if (cachedStep != null && cachedStep.equals(step)) {
+            return cachedPosition;
+        }
+        return 0;
     }
 }

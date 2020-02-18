@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 import com.prisonerprice.bakingtime.DetailScreen.DetailActivity;
 import com.prisonerprice.bakingtime.DetailScreen.DetailViewModel;
@@ -48,7 +49,12 @@ public class MainActivity extends AppCompatActivity implements MainScreenAdapter
     }
 
     private int numberOfColumns() {
-        return 1;
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = displayMetrics.widthPixels;
+        int nColumns = width / 800;
+        if (nColumns < 1) return 1;
+        return nColumns;
     }
 
     @Override
