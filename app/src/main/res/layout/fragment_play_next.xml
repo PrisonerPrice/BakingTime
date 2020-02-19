@@ -18,7 +18,8 @@
             android:text="@string/play_prev_btn"
             android:textSize="12sp"
             android:layout_marginVertical="@dimen/MarginS"
-            android:layout_marginHorizontal="@dimen/MarginL" />
+            android:layout_marginHorizontal="@dimen/MarginL"
+            android:backgroundTint="@color/colorPrimary"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/play_next_btn"
@@ -28,7 +29,8 @@
             android:text="@string/play_next_btn"
             android:textSize="12sp"
             android:layout_marginVertical="@dimen/MarginS"
-            android:layout_marginHorizontal="@dimen/MarginL"/>
+            android:layout_marginHorizontal="@dimen/MarginL"
+            android:backgroundTint="@color/colorPrimary"/>
 
     </LinearLayout>
 

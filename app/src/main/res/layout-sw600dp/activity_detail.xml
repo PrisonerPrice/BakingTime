@@ -43,28 +43,28 @@
             android:id="@+id/media_player_fl"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"
+            android:layout_weight="16"
             android:layout_marginHorizontal="@dimen/MarginS"/>
 
         <FrameLayout
             android:id="@+id/instruction_fl"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="10"
             android:layout_marginHorizontal="@dimen/MarginS"/>
 
         <FrameLayout
             android:id="@+id/play_next_fl"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginHorizontal="@dimen/MarginS"/>
 
         <FrameLayout
             android:id="@+id/sw_blank_fl"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0"/>
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
