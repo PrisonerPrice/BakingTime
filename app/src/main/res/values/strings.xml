@@ -6,4 +6,8 @@
     <string name="player_no_video">No video available</string>
     <string name="play_prev_btn">Play Previous</string>
     <string name="play_next_btn">Play Next</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="widget_btn">Get Ingredients!</string>
 </resources>

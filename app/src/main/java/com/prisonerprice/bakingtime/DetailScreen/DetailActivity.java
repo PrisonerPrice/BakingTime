@@ -4,6 +4,10 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.prisonerprice.bakingtime.R;
+import com.prisonerprice.bakingtime.Widget.IngredientWidget;
 
 public class DetailActivity extends AppCompatActivity {
 
