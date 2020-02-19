@@ -2,25 +2,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     android:padding="@dimen/widget_margin">
 
     <TextView
         android:id="@+id/widget_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:layout_margin="8dp"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="italic"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"/>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/MarginM"/>
 
     <Button
-        android:id="@+id/widget_btn"
-        android:layout_width="wrap_content"
+        android:id="@+id/widget_select_btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:textSize="12sp"
-        android:text="@string/widget_btn"
-        android:layout_height="wrap_content"
+        android:text="@string/widget_select_btn"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimaryDark"
         android:layout_gravity="center_horizontal"
         android:gravity="center"/>
 
