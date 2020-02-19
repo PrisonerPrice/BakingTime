@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.prisonerprice.bakingtime.R;
 import com.prisonerprice.bakingtime.Widget.IngredientWidget;
@@ -40,6 +42,9 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        TextView toolBarTitle = (TextView) findViewById(R.id.toolbar_title);
+        if (toolBarTitle != null) toolBarTitle.setText(model.getRecipe().getRecipeName().toUpperCase());
 
         // update widget data
         Intent intent = new Intent(this, IngredientWidget.class);

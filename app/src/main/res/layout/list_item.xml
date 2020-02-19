@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/design_default_color_on_primary"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:textStyle="italic"/>
 
 </com.google.android.material.card.MaterialCardView>
