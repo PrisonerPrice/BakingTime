@@ -1,6 +1,7 @@
 package com.prisonerprice.bakingtime.DetailScreen;
 
 import androidx.annotation.RequiresApi;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
@@ -17,8 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.prisonerprice.bakingtime.Model.Recipe;
+import com.prisonerprice.bakingtime.Model.RecipeUtils;
 import com.prisonerprice.bakingtime.R;
 import com.prisonerprice.bakingtime.Widget.IngredientWidget;
+
+import org.jetbrains.annotations.TestOnly;
+import org.json.JSONException;
+
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -38,10 +46,27 @@ public class DetailActivity extends AppCompatActivity {
     public static Snackbar atTheBeginningSnack;
     public static Snackbar atTheEndSnack;
 
+    @VisibleForTesting
+    public void testRelatedStuffs() {
+        int i = 0;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        // used for testing
+        if (model.getRecipe() == null) {
+            int position = 0; // position = 0, 1, 2, 3
+            try {
+                List<Recipe> recipes = RecipeUtils.parseJSONToRecipes(RecipeUtils.loadJSONFromAsset(this));
+                model.setRecipe(recipes.get(position));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
 
         TextView toolBarTitle = (TextView) findViewById(R.id.toolbar_title);
         if (toolBarTitle != null) toolBarTitle.setText(model.getRecipe().getRecipeName().toUpperCase());

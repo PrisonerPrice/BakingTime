@@ -33,7 +33,8 @@ public class IngredientWidget extends AppWidgetProvider {
         String dataString = "Go to select a recipe!";
         if (model.getRecipe() != null) {
             Step ingredients = RecipeUtils.parseIngredientsToStep(model.getRecipe().getIngredients());
-            dataString = ingredients.getDescription();
+            dataString = model.getRecipe().getRecipeName() + "\n" + "\n" +
+                    ingredients.getDescription();
         }
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredient_widget);
