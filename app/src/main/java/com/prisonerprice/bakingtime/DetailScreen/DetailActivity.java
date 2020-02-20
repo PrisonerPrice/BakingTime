@@ -46,11 +46,6 @@ public class DetailActivity extends AppCompatActivity {
     public static Snackbar atTheBeginningSnack;
     public static Snackbar atTheEndSnack;
 
-    @VisibleForTesting
-    public void testRelatedStuffs() {
-        int i = 0;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

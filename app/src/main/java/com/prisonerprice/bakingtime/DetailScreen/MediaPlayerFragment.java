@@ -29,7 +29,6 @@ import com.prisonerprice.bakingtime.R;
 public class MediaPlayerFragment extends Fragment {
 
     private static final String TAG = MediaPlayerFragment.class.getSimpleName();
-    private static final String POSITION_KEY = "position_key";
 
     private PlayerView playerView;
     private LinearLayout noVideoIndicator;
@@ -84,6 +83,13 @@ public class MediaPlayerFragment extends Fragment {
         });
         playerView = rootView.findViewById(R.id.exo_player);
         noVideoIndicator = rootView.findViewById(R.id.player_no_video_indicator);
+
+        // release the player when back btn is clicked
+        model.getShowDetail().observe(getViewLifecycleOwner(), b -> {
+            if (!b && player != null && hasVideo) {
+                releasePlayer();
+            }
+        });
 
         return rootView;
     }
