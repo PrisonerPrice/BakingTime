@@ -101,8 +101,11 @@ public class DetailActivity extends AppCompatActivity {
             model.isDetailShown(false);
         }
 
+        boolean isTablet = getResources().getBoolean(R.bool.isTablet);
+        Log.d(TAG, "isTablet " + isTablet);
+
         // tablet ui
-        if (findViewById(R.id.sw_blank_fl) != null) {
+        if (isTablet) {
             model.getShowDetail().observe(this, b -> {
                 if (b) {
                     detailLinearLayout.setVisibility(View.VISIBLE);
